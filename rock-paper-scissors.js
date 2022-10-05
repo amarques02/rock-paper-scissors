@@ -29,7 +29,7 @@ function getComputerChoice() {
 			return ("Draw!")
 	}
 }
-while (1) {
+for (let i = 0; i < 5; i++) {
 	let playerSelection = window.prompt("Pick your weapon!");
 	playerSelection = playerSelection.toLowerCase();
 	while (playerSelection != "rock" && playerSelection != "paper" && playerSelection != 'scissors') {
