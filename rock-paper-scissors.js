@@ -39,6 +39,6 @@ while (1) {
 	const computerSelection = getComputerChoice();
 	console.log(playRound(playerSelection, computerSelection));
 	playerSelection = window.prompt("Type enter to try again or \'close\' to exit the game");
-	if (close == 'close')
+	if (playerSelection == 'close')
 		break;
 }	
