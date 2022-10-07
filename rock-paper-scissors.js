@@ -1,4 +1,4 @@
-let totalRounds = 5;
+let totalRounds = 6;
 let roundsPlayed = 0;
 let playerScore = 0;
 function getComputerChoice() {
@@ -17,6 +17,7 @@ function playRound(playerSelection, computerSelection) {
 	}
 	else if (playerSelection == computerSelection) {
 		console.log('It\'s a draw!');
+		roundsPlayed--;
 	}
 	else if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != 'scissors') {
 		console.log(playerSelection + ' isn\'t even an option.\nL + ratio + no bitches + you\'re ugly (ye you lost this one)');
@@ -34,8 +35,8 @@ while (roundsPlayed < totalRounds) {
 	roundsPlayed++;
 }
 if (playerScore > (roundsPlayed / 2))
-	console.log('You won ' + playerScore + ' out of ' + roundsPlayed + ' total rounds. GG!');
+	console.log('You won ' + playerScore + ' out of ' + roundsPlayed + ' total points. GG!');
 else if (playerScore == (roundsPlayed / 2))
-	console.log('You won ' + playerScore + ' out of ' + roundsPlayed + ' total rounds. Draw!');
+	console.log('You won ' + playerScore + ' out of ' + roundsPlayed + ' total points. Draw!');
 else
-	console.log('You won ' + playerScore + ' out of ' + roundsPlayed + ' total rounds. Game Over!');
+	console.log('You won ' + playerScore + ' out of ' + roundsPlayed + ' total points. Game Over!');
