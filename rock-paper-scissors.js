@@ -1,44 +1,41 @@
-let	choices = ['rock', 'paper', 'scissors'];
+let totalRounds = 5;
+let roundsPlayed = 0;
+let playerScore = 0;
 function getComputerChoice() {
+	let	choices = ['rock', 'paper', 'scissors'];
 	return (choices[Math.floor(Math.random() * choices.length)])
 }
 
- function playRound(playerSelection, computerSelection) {
-	if (playerSelection == 'rock'){
-		if (computerSelection == 'paper')
-			return ("You Lose! Paper beats Rock")
-		else if (computerSelection == 'scissors')
-			return ("You Win! Rock beats Scissors")
-		else
-			return ("Draw!")
+function playRound(playerSelection, computerSelection) {
+	let playerPoint = 0;
+
+	if ((playerSelection == 'scissors' && computerSelection == 'paper') ||
+		(playerSelection == 'paper' && computerSelection == 'rock') ||
+		(playerSelection == 'rock' && computerSelection == 'scissors')) {
+		playerPoint = 1;
+		console.log('You win! ' + playerSelection + ' beats ' + computerSelection);
 	}
-	else if (playerSelection == 'paper'){
-		if (computerSelection == 'rock')
-			return ("You Win! Paper beats Rock")
-		else if (computerSelection == 'scissors')
-			return ("You Lose! scissors beats paper")
-		else
-			return ("Draw!")
+	else if (playerSelection == computerSelection) {
+		console.log('It\'s a draw!');
 	}
-	else {
-		if (computerSelection == 'paper')
-			return ("You Win! Scissors beats Paper")
-		else if (computerSelection == 'rock')
-			return ("You Lose! Rock beats Scissors")
-		else
-			return ("Draw!")
+	else if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != 'scissors') {
+		console.log(playerSelection + ' isn\'t even an option.\nL + ratio + no bitches + you\'re ugly (ye you lost this one)');
 	}
+	else
+		console.log('You lose! ' + computerSelection + ' beats ' + playerSelection);
+	return (playerPoint)
 }
-for (let i = 0; i < 5; i++) {
-	let playerSelection = window.prompt("Pick your weapon!");
+
+while (roundsPlayed < totalRounds) {
+	let playerSelection = window.prompt('Pick your weapon!');
 	playerSelection = playerSelection.toLowerCase();
-	while (playerSelection != "rock" && playerSelection != "paper" && playerSelection != 'scissors') {
-		playerSelection = window.prompt("Woops! That\'s not a valid choice!\nTry again");
-		playerSelection = playerSelection.toLowerCase();
-	}
-	const computerSelection = getComputerChoice();
-	console.log(playRound(playerSelection, computerSelection));
-	playerSelection = window.prompt("Type enter to try again or \'close\' to exit the game");
-	if (playerSelection == 'close')
-		break;
-}	
+	let computerSelection = getComputerChoice();
+	playerScore += playRound(playerSelection, computerSelection);
+	roundsPlayed++;
+}
+if (playerScore > (roundsPlayed / 2))
+	console.log('You won ' + playerScore + ' out of ' + roundsPlayed + ' total rounds. GG!');
+else if (playerScore == (roundsPlayed / 2))
+	console.log('You won ' + playerScore + ' out of ' + roundsPlayed + ' total rounds. Draw!');
+else
+	console.log('You won ' + playerScore + ' out of ' + roundsPlayed + ' total rounds. Game Over!');
