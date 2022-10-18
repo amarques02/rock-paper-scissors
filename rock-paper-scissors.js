@@ -1,42 +1,57 @@
-let totalRounds = 6;
-let roundsPlayed = 0;
 let playerScore = 0;
+let computerScore = 0;
+const buttons = document.querySelectorAll('input');
+
 function getComputerChoice() {
 	let	choices = ['rock', 'paper', 'scissors'];
 	return (choices[Math.floor(Math.random() * choices.length)])
 }
 
-function playRound(playerSelection, computerSelection) {
-	let playerPoint = 0;
+buttons.forEach(button => {
+	button.addEventListener('click', function(){
+		playRound(button.value)
+	})
+})
+
+function resetButtons() {
+	buttons.forEach(button => {
+		button.disabled = true
+	})
+}
+
+function playRound(playerSelection) {
+	let resultMessage = "";
+	let scoreMessage = "";
+	let computerSelection = getComputerChoice();
 
 	if ((playerSelection == 'scissors' && computerSelection == 'paper') ||
 		(playerSelection == 'paper' && computerSelection == 'rock') ||
 		(playerSelection == 'rock' && computerSelection == 'scissors')) {
-		playerPoint = 1;
-		console.log('You win! ' + playerSelection + ' beats ' + computerSelection);
+		resultMessage = '<br><b>You win :) </b><br>' + playerSelection + ' beats ' + computerSelection;
+		playerScore += 1;
+		scoreMessage = '<br><br><b>Current Score: </b><br>' + 'Player: '+ playerScore + '  CPU: ' + computerScore;
+		if (playerScore == 5) {
+			resultMessage += '<br><b>You won, GG! Reload the page to start a new game.';
+			resetButtons();
+		}
 	}
-	else if (playerSelection == computerSelection) {
-		console.log('It\'s a draw!');
-		roundsPlayed--;
+	else if (playerSelection == computerSelection) {	
+		resultMessage ='<br><b>It\'s a draw!</b><br> you both played ' + playerSelection;
+		scoreMessage = '<br><br><b>Current Score: </b><br>' + 'Player: '+ playerScore + '  CPU: ' + computerScore;
 	}
 	else if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != 'scissors') {
-		console.log(playerSelection + ' isn\'t even an option.\nL + ratio + no bitches + you\'re ugly (ye you lost this one)');
+		resultMessage = '<br><b>Bruh </b><br>' + playerSelection + ' isn\'t even an option.\nL + ratio + no bitches + you\'re ugly';
+		scoreMessage = '<br><br><b>Current Score: </b><br>' + 'Player: '+ playerScore + '  CPU: ' + computerScore;
 	}
-	else
-		console.log('You lose! ' + computerSelection + ' beats ' + playerSelection);
-	return (playerPoint)
+	else {
+		resultMessage ='<br><b>You lose :(</b><br> ' + computerSelection + ' beats ' + playerSelection;
+		computerScore += 1;
+		scoreMessage = '<br><br><b>Current Score: </b><br>' + 'Player: '+ playerScore + '  CPU: ' + computerScore;
+		if (computerScore == 5) {
+			resultMessage += '<br><b>Rip my man, you lost :( reload the page to start a new game.';
+			resetButtons();
+		}
+	}
+	document.getElementById('game').innerHTML = resultMessage;
+	document.getElementById('score').innerHTML = scoreMessage;
 }
-
-while (roundsPlayed < totalRounds) {
-	let playerSelection = window.prompt('Pick your weapon!');
-	playerSelection = playerSelection.toLowerCase();
-	let computerSelection = getComputerChoice();
-	playerScore += playRound(playerSelection, computerSelection);
-	roundsPlayed++;
-}
-if (playerScore > (roundsPlayed / 2))
-	console.log('You won ' + playerScore + ' out of ' + roundsPlayed + ' total points. GG!');
-else if (playerScore == (roundsPlayed / 2))
-	console.log('You won ' + playerScore + ' out of ' + roundsPlayed + ' total points. Draw!');
-else
-	console.log('You won ' + playerScore + ' out of ' + roundsPlayed + ' total points. Game Over!');
