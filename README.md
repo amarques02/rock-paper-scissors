@@ -6,5 +6,5 @@
 <ul>
 	<li>JavaScript</li>
 	<li>Html</li>
-	<li>CSS - (soon)</li>
+	<li>CSS</li>
 </ul>
