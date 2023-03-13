@@ -1,0 +1,37 @@
+body {
+	background-color: #1a1a1a;
+	color: white;
+	font-family: sans-serif;
+}
+h1 {
+	font-size: 2.5rem;
+	margin-top: 0;
+	text-align: center;
+}
+input[type="button"] {
+	background-color: #303030;
+	border: none;
+	color: white;
+	cursor: pointer;
+	font-size: 1.5rem;
+	margin: 0 10px;
+	padding: 10px 20px;
+	transition: background-color 0.3s ease;
+}
+input[type="button"]:hover {
+	background-color: #505050;
+}
+#game {
+	margin-top: 20px;
+	text-align: center;
+}
+#score {
+	font-size: 2rem;
+	font-weight: bold;
+	text-align: center;
+}
+
+.button-container {
+	margin-top: 50px;
+	text-align: center;
+}
